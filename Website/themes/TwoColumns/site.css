@@ -10,12 +10,12 @@
     }
 }
 
-html, body{
+html, body {
     height: 100%;
 }
 
 body {
-    font: 1.8em/1.5 'Century Gothic', Verdana, Geneva, 'DejaVu Sans', sans-serif;
+	font-family: segoe-ui_normal,Segoe UI,Segoe,Segoe WP,Helvetica Neue,Helvetica,sans-serif;
     margin: 0;
 }
 
@@ -43,7 +43,7 @@ a {
     }
 
         .container > header a {
-            font-size: 4em;
+            font-size: 40px;
             color: #000;
         }
 
@@ -63,7 +63,7 @@ input[type], button, textarea {
 /*#region Post */
 
 .post header h1 {
-    margin: 0 0 3px 0;
+    margin: 0 0 7px 0;
 }
 
 .post header a {
@@ -98,18 +98,26 @@ input[type], button, textarea {
                 content: ", ";
             }
 
+    .post header div .socialmedia {
+        margin: 0;
+        padding: 0px;
+        display: block;
+    }
+
+        .post header div .socialmedia a {
+            margin: 0;
+        }
+
+        .post header div .socialmedia li {
+            display: inline;
+        }
+
+            .post header div .socialmedia li:not(:first-child):not(:last-child):after {
+                content: ", ";
+            }
+
 .post abbr {
     border: none;
-}
-
-.post h2 {
-    margin-bottom: 0;
-    font-size: 1.3em;
-}
-
-.post h3 {
-    margin-bottom: 0;
-    font-size: 1.1em;
 }
 
 .post div[itemprop='articleBody'] {
@@ -117,6 +125,7 @@ input[type], button, textarea {
     padding-bottom: .5em;
     margin-bottom: 2em;
     -ms-text-size-adjust: 150%;
+    margin-top: 40px;
 }
 
 .post p {
@@ -243,5 +252,58 @@ footer {
 /*#endregion */
 
 .slideClone img {
+    float: left;
+}
+
+.headshot-container {
+    width: 75px;
+    height: 75px;
+}
+
+.headshot {
+    width: 75px;
+}
+
+.ads-landscape {
+    height: 140px;
+    padding: 25px 0px;
+}
+
+.ads-middle {
+    height: 250px;
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+    padding: 24px;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.post h2 {
+    margin-bottom: 10px;
+    font-size: 26px;
+}
+
+.post h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.post header .meta a {
+    color: #3277b3;
+}
+
+a.twitter {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABY0lEQVQ4y2NgGFagpaVFoLGxsRqIdzY0NGxuamrK7ejoYAfJAWm+1tZWGbBCoEQTkGOCz7Dm5mZpoEH3gAb9R8MngeKLgfgG0EJBsGKg4CUgfgc01xGXgUAN67AYBsM/gHr7gJamwAy8DJX4A9TY0d7ezodsGNA73EC533gM/A/Ud6ytrY0fZvtkNAVvgGJdQBtNe3t7WYDBIUXAsN9A77Ijh48sUOIZDg3fgBqu4zMQiN+jh88xID5DQBM+F15BN3ASuYZBDVyAYiAwhkRwJAmiMFB/KEayAAU80NDZQAU/STTwOSxxo7vSASj5iwzv5jHgSbwdJBp2AphcWPDmV6BLPYEKl4JSPwEDn4CSG17DZsyYATLQBGjgdgIuuw00TAWrIcDIUAAqaAJFPVAxoQQMypqzgN7kJ1QsyTZCwBWgpn9YXHQHiEGZX53kMg9YMPADva0PNMAGaIABMMMLDWghDADhpx16/9dSIQAAAABJRU5ErkJggg==') no-repeat;
+    display: inline-block;
+    overflow: hidden;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    padding-top: 20px;
+    width: 20px;
+    height: 20px;
     float: left;
 }

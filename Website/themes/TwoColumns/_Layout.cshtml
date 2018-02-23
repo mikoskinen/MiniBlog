@@ -19,15 +19,41 @@
     <link rel="shortcut icon" href="@Blog.FingerPrint("/favicon.ico")" type="image/x-icon" />
     <link rel="dns-prefetch" href="http://gravatar.com/" />
 
+    <!--Syntax Highlighter styles -->
+    <link href="@Blog.FingerPrint("/Content/syntax/shCore.css")" rel="stylesheet" />
+    <link href="@Blog.FingerPrint("/Content/syntax/shThemeDefault.css")" rel="stylesheet" />
+
     @AdminCss()
 
     <meta name="application-name" content="@Blog.Title" />
     <meta name="msapplication-TileColor" content="#ffffff" />
 
+    <meta name=application-name content="@Blog.Title">
+
+    @if (Blog.CurrentPost != null)
+    {
+        <meta property="og:description" content="@Blog.Description" />
+        <meta property="og:image" content="@Blog.Image" />
+        <meta property="og:type" content="article" />
+    }
+    else
+    {
+        <meta property="og:description" content="@Blog.Description" />
+        <meta property="og:image" content="@Blog.Image" />
+        <meta property="og:type" content="website" />
+    }
+
+    <meta name=twitter:card content=summary>
+    <meta name=twitter:description content="@Blog.Description">
+    <meta name=twitter:image content="@Blog.Image">
+    <meta name=twitter:creator content="@("@MikaelKoskinen")">
+    <meta name=twitter:site content="@("@MikaelKoskinen")">
+
+    <meta name="twitter:title" content="@Page.Title">
     <meta property="og:title" content="@Page.Title" />
-    <meta property="og:image" content="@Blog.Image" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="@(Request.Url.Scheme +"://" + Request.Url.Authority + Request.RawUrl)" />
+    <meta property="og:site_name" content="@Blog.Title" />
+    <meta property="og:url" content="@(Request.Url.Scheme + "://" + Request.Url.Authority + Request.RawUrl)" />
+
     @if (!string.IsNullOrEmpty(prev))
     {
         <link rel="prev" href="@prev" />
@@ -36,6 +62,7 @@
     {
         <link rel="next" href="@next" />
     }
+	
 </head>
 <body itemscope itemtype="http://schema.org/Blog" class="@(User.Identity.IsAuthenticated ? "admin": null)">
 
@@ -43,9 +70,14 @@
         <header role="banner">
             <span><a href="~/" itemprop="url">@Blog.Title</a></span><br />
             <em>@Blog.Description</em>
+            <hr />
+            <div class="ads-landscape">
+                <div data-type="ad" data-publisher="lqm.mikaelkoskinen.site" data-format="728x90" data-zone="ros"></div>
+            </div>
+            <hr />
         </header>
 
-        <div role="main" class="col-md-8">
+        <div role="main" class="col-md-9">
             @RenderBody()
 
             @if (Page.ShowPaging != null)
@@ -62,30 +94,40 @@
                     }
                 </ul>
             }
+
         </div>
 
-        <aside role="complementary" class="col-md-3 col-md-offset-1">
+        <aside role="complementary" class="col-md-3">
             <section>
                 <h3>About me</h3>
+                <div class="headshot-container"><img src="@Blog.Image" class="headshot" alt="Mikael Koskinen" /></div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper.
+                    Mikael is MVP of Windows Development and the founder of <a href="http://adafy.com">Adafy Oy</a>, a Finnish software development house providing services for .NET, Azure and UWP development.
                 </p>
+                <p>
+                    <a href="mailto:mikael.koskinen@adafy.com">Email</a>
+                    <a href="https://twitter.com/mikaelkoskinen">Twitter</a>
+                </p>
+
+            </section>
+            <section>
+                <div class="ads-middle">
+                    <div data-type="ad" data-publisher="lqm.mikaelkoskinen.site" data-format="300x250" data-zone="ros"></div>
+                </div>
             </section>
             <section>
                 <h3>Categories</h3>
                 <ul>
-                    @foreach ( var cat in Blog.GetCategories() ) {
+                    @foreach (var cat in Blog.GetCategories())
+                    {
                         <li><a href="~/category/@HttpUtility.UrlEncode(cat.Key.ToLowerInvariant())">@cat.Key (@cat.Value)</a></li>
                     }
                 </ul>
             </section>
             <section>
-                <h3>My side projects</h3>
-                <ul>
-                    <li>Project 1</li>
-                    <li>Project 2</li>
-                    <li>Project 3</li>
-                </ul>
+                <div data-type="ad" data-publisher="lqm.mikaelkoskinen.site" data-zone="ron" data-format="160x600"></div>
+                <div data-type="ad" data-publisher="lqm.mikaelkoskinen.site" data-zone="ron" data-format="160x600"></div>
+                <div data-type="ad" data-publisher="lqm.mikaelkoskinen.site" data-zone="ron" data-format="160x600"></div>
             </section>
         </aside>
     </div>
@@ -99,10 +141,10 @@
         }
         <span>
             Copyright &copy; @DateTime.Now.Year
-            <a href="http://madskristensen.net" itemprop="url name">Mads Kristensen</a>
+            <a href="http://mikaelkoskinen.net" itemprop="url name">Mikael Koskinen.</a>
+            MiniBlog created by <a href="http://madskristensen.net" itemprop="url name">Mads Kristensen</a>
         </span>
     </footer>
-
 
     @if ((Blog.CurrentPost != null && Blog.CurrentPost.AreCommentsOpen(Context)) || Blog.IsNewPost)
     {
@@ -113,6 +155,55 @@
     {
         @RenderPage("~/views/AdminMenu.cshtml")
     }
+
+    <script type="text/javascript" async defer>
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-4901211-5']);
+        _gaq.push(['_setDomainName', 'mikaelkoskinen.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+        function _dmBootstrap(file) {
+            var _dma = document.createElement('script');
+            _dma.type = 'text/javascript';
+            _dma.async = true;
+            _dma.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + file;
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_dma);
+        }
+
+        function _dmFollowup(file) { if (typeof DMAds === 'undefined') _dmBootstrap('cdn2.DeveloperMedia.com/a.min.js'); }
+
+        (function () {
+            _dmBootstrap('cdn1.DeveloperMedia.com/a.min.js');
+            setTimeout(_dmFollowup, 2000);
+        })();
+
+    </script>
+
+    <script src="@Blog.FingerPrint("/scripts/syntax/shCore.js")"></script>s
+    <script src="@Blog.FingerPrint("/scripts/syntax/shBrushAppleScript.js")"></script>
+    <script src="@Blog.FingerPrint("/scripts/syntax/shBrushJScript.js")"></script>
+    <script src="@Blog.FingerPrint("/scripts/syntax/shBrushSql.js")"></script>
+    <script src="@Blog.FingerPrint("/scripts/syntax/shBrushPowerShell.js")"></script>
+    <script src="@Blog.FingerPrint("/scripts/syntax/shBrushXml.js")"></script>
+    <script src="@Blog.FingerPrint("/scripts/syntax/shBrushCSharp.js")"></script>
+    <script src="@Blog.FingerPrint("/scripts/syntax/shBrushVb.js")"></script>
+    <script src="@Blog.FingerPrint("/scripts/syntax/shBrushCss.js")"></script>
+    <script src="@Blog.FingerPrint("/scripts/syntax/shBrushPlain.js")"></script>
+    <script src="@Blog.FingerPrint("/scripts/syntax/shBrushBash.js")"></script>
+
+    <script type="text/javascript">
+        SyntaxHighlighter.all()
+    </script>
 
 </body>
 </html>
